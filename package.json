@@ -1,0 +1,23 @@
+{
+  "name": "babylon-effect-uncurried",
+  "version": "0.0.0",
+  "description": "Use Babylon.js from PureScript nicely, via Effect.Uncurried module",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "spago build",
+    "test": "spago test"
+  },
+  "author": "e_ntyo",
+  "license": "MIT",
+  "dependencies": {
+    "babylonjs": "^3.3.0"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.11.0",
+    "purescript": "^0.12.1"
+  }
+}
