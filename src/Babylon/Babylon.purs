@@ -71,5 +71,3 @@ foreign import _unsafeWindowResizeEventHandler :: EffectFn1 Event Unit
 
 unsafeWindowResizeEventHandler :: Event -> Effect Unit
 unsafeWindowResizeEventHandler = runEffectFn1 _unsafeWindowResizeEventHandler
-
--- TODO: addEventListener("resize", callback)
