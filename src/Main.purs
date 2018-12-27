@@ -2,12 +2,16 @@ module Main where
 
 import Prelude
 
-import Babylon (attachControlToArcRotateCamera, createArcRotateCamera, createEngine, createScene, createSphere, createVector3, runRenderLoop, unsafeSceneRender, unsafeMakeSceneRef)
+import Babylon (attachControlToArcRotateCamera, createArcRotateCamera, createEngine, createScene, createSphere, createVector3, runRenderLoop, unsafeSceneRender, unsafeMakeSceneRef, unsafeMakeEngineRef, unsafeWindowResizeEventHandler)
 import Data.Maybe (Maybe(..))
+import Data.Newtype (wrap)
 import Effect (Effect)
 import Effect.Class.Console (log)
 import Graphics.Canvas (getCanvasElementById)
 import Math (pi)
+import Web.Event.EventTarget (addEventListener, eventListener)
+import Web.HTML (window)
+import Web.HTML.Window (toEventTarget)
 
 main :: Effect Unit
 main = do
@@ -23,5 +27,9 @@ main = do
       attachControlToArcRotateCamera camera canvasElement true true 0.0
       sphere <- createSphere "sphere" {diameter: 2} scene
       unsafeMakeSceneRef scene
+      unsafeMakeEngineRef engine
       runRenderLoop engine unsafeSceneRender
+      et <- toEventTarget <$> window
+      listener <- eventListener unsafeWindowResizeEventHandler
+      addEventListener (wrap "resize") listener false et
       log "DONE"

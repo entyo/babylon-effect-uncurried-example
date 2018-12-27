@@ -7,6 +7,7 @@ import Data.Function.Uncurried as FU
 import Effect (Effect)
 import Effect.Uncurried (EffectFn1, EffectFn2, EffectFn5, mkEffectFn1, runEffectFn1, runEffectFn2, runEffectFn5)
 import Graphics.Canvas (CanvasElement)
+import Web.Event.Internal.Types (Event)
 
 foreign import data Engine :: Type
 foreign import data Scene :: Type
@@ -58,7 +59,17 @@ createVector3 = runFn3 _createVector3
 
 foreign import _unsafeMakeSceneRef :: EffectFn1 Scene Unit
 
-unsafeMakeSceneRef :: Scene-> Effect Unit
+unsafeMakeSceneRef :: Scene -> Effect Unit
 unsafeMakeSceneRef = runEffectFn1 _unsafeMakeSceneRef
+
+foreign import _unsafeMakeEngineRef :: EffectFn1 Engine Unit
+
+unsafeMakeEngineRef :: Engine -> Effect Unit
+unsafeMakeEngineRef = runEffectFn1 _unsafeMakeEngineRef
+
+foreign import _unsafeWindowResizeEventHandler :: EffectFn1 Event Unit
+
+unsafeWindowResizeEventHandler :: Event -> Effect Unit
+unsafeWindowResizeEventHandler = runEffectFn1 _unsafeWindowResizeEventHandler
 
 -- TODO: addEventListener("resize", callback)

@@ -34,7 +34,7 @@ exports._runRenderLoop = function (engine, callback) {
 
 exports._unsafeMakeSceneRef = function (scene) {
   window["scene"] = scene;
-} 
+}
 
 exports._unsafeSceneRender = function () {
   // Danger!!! It may cause "Uncaught ReferenceError: scene is not defined"
@@ -45,6 +45,14 @@ exports._createVector3 = function (x, y, z) {
   return function () {
     return new BABYLON.Vector3(x, y, z);
   }
+}
+
+exports._unsafeMakeEngineRef = function (engine) {
+  window["engine"] = engine;
+}
+
+exports._unsafeWindowResizeEventHandler = function (event) {
+  window["engine"].resize();
 }
 
 // TODO: addEventListener("resize", callback)
