@@ -56,4 +56,9 @@ foreign import _createVector3 :: FU.Fn3 Number Number Number (Effect Vector3)
 createVector3 :: Number -> Number -> Number -> (Effect Vector3)
 createVector3 = runFn3 _createVector3
 
+foreign import _unsafeMakeSceneRef :: EffectFn1 Scene Unit
+
+unsafeMakeSceneRef :: Scene-> Effect Unit
+unsafeMakeSceneRef = runEffectFn1 _unsafeMakeSceneRef
+
 -- TODO: addEventListener("resize", callback)

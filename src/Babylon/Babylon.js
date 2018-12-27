@@ -8,7 +8,7 @@ exports._createEngine = function (canvas, antialias, options, adaptToDeviceRatio
 
 exports._createScene = function (engine) {
   return function () {
-    new BABYLON.Scene(engine)
+    return new BABYLON.Scene(engine)
   };
 };
 
@@ -32,9 +32,13 @@ exports._runRenderLoop = function (engine, callback) {
   engine.runRenderLoop(callback);
 }
 
+exports._unsafeMakeSceneRef = function (scene) {
+  window["scene"] = scene;
+} 
+
 exports._unsafeSceneRender = function () {
   // Danger!!! It may cause "Uncaught ReferenceError: scene is not defined"
-  scene.render();
+  window["scene"].render();
 }
 
 exports._createVector3 = function (x, y, z) {
